@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="3"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Planning Poker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Planning Poker</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Accueil</a>
+            <a href="{{ url_for('game') }}">Jeu</a>
+            <a href="{{ url_for('results') }}">Résultats</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
