@@ -6,8 +6,11 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/settings')
+@app.route('/settings', methods=['GET', 'POST'])
 def settings():
+    if request.method == 'POST':
+        num_players = request.form.get('num_players')
+
     return render_template('settings.html')
 
 @app.route('/game')
