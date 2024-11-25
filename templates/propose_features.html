@@ -10,6 +10,14 @@ endblock %} {% block content %}
   <button type="submit">Ajouter</button>
 </form>
 
+<!-- Liste des fonctionnalités proposées -->
+<h3>Fonctionnalités déjà proposées</h3>
+<ul id="feature-list">
+  {% for feature in features %} {{ feature }}
+  <br />
+  {% endfor %}
+</ul>
+
 <table style="width: 15%; margin-left: auto; margin-right: auto">
   <tr>
     <td scope="col">
