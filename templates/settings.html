@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Paramètres{% endblock %}
+{% block content %}
+<h2>Réglage des paramètres</h2>
+
+<form action="/start_game" method="POST">
+
+    <!-- Configuration des joueurs -->
+    <fieldset>
+        <legend>Configuration des joueurs</legend>
+        <label for="num_players">Nombre de joueurs :</label>
+        <input type="number" id="num_players" name="num_players" min="1" max="10" value="3" required>
+        <div id="player_pseudos">
+            <label>Pseudo Joueur 1 : <input type="text" name="player_1" required></label><br>
+            <label>Pseudo Joueur 2 : <input type="text" name="player_2" required></label><br>
+            <label>Pseudo Joueur 3 : <input type="text" name="player_3" required></label><br>
+        </div>
+    </fieldset>
+
+    <!-- Choix des règles -->
+    <fieldset>
+        <legend>Choix des règles</legend>
+        <label for="rules">Type de règles :</label>
+        <select id="rules" name="rules">
+            <option value="strict">100% d'accord</option>
+            <option value="average">Moyenne</option>
+            <option value="median">Médiane</option>
+        </select>
+    </fieldset>
+    
+    <br>
+    <!-- Navigation -->
+    <table style="width:15%; margin-left:auto; margin-right:auto;">
+        <tr >
+            <td scope="col"><a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a> </td>
+        </tr>
+    </table>
+    
+</form>
+
+<script>
+    // Dynamically add fields for player pseudos based on the number of players
+    document.getElementById('num_players').addEventListener('input', function () {
+        const numPlayers = this.value;
+        const playerPseudosDiv = document.getElementById('player_pseudos');
+        playerPseudosDiv.innerHTML = '';
+        for (let i = 1; i <= numPlayers; i++) {
+            playerPseudosDiv.innerHTML += `
+                <label>Pseudo Joueur ${i} : <input type="text" name="player_${i}" required></label><br>
+            `;
+        }
+    });
+</script>
+
+{% endblock %}
