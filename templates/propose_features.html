@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Proposition de fonctionnalités{%
+endblock %} {% block content %}
+
+<h2>Proposer des fonctionnalités à voter</h2>
+
+<!-- Formulaire pour ajouter une fonctionnalité -->
+<form id="feature-form" method="POST">
+  <label for="feature">Nouvelle fonctionnalité :</label>
+  <input type="text" id="feature" name="feature" required />
+  <button type="submit">Ajouter</button>
+</form>
+
+<table style="width: 15%; margin-left: auto; margin-right: auto">
+  <tr>
+    <td scope="col">
+      <a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a>
+    </td>
+  </tr>
+</table>
+
+{% endblock %}

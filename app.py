@@ -15,6 +15,19 @@ def settings():
 
     return render_template('settings.html')
 
+# Liste temporaire pour stocker les fonctionnalités proposées
+features = []
+
+@app.route('/propose_features', methods=['GET', 'POST'])
+def propose_features():
+    global features
+    if request.method == 'POST':
+        # Ajout d'une nouvelle fonctionnalité
+        new_feature = request.form.get('feature')
+        if new_feature:
+            features.append(new_feature)  # Ajout à la liste
+    return render_template('propose_features.html', features=features)
+ 
 @app.route('/game')
 def game():
     return render_template('game.html')
