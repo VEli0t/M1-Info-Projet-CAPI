@@ -10,6 +10,7 @@ def home():
 def settings():
     if request.method == 'POST':
         num_players = request.form.get('num_players')
+        players = [request.form.get(f'player_{i+1}') for i in range(int(num_players))]
 
     return render_template('settings.html')
 
