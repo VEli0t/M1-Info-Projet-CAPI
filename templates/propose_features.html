@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block title %}Proposition de fonctionnalités{%
+endblock %} {% block content %}
+
+<h2>Proposer des fonctionnalités à voter</h2>
+
+<!-- Formulaire pour ajouter une fonctionnalité -->
+<form id="feature-form" method="POST">
+  <label for="feature">Nouvelle fonctionnalité :</label>
+  <input type="text" id="feature" name="feature" required />
+  <button type="submit">Ajouter</button>
+</form>
+
+<!-- Liste des fonctionnalités proposées -->
+<h3>Fonctionnalités déjà proposées</h3>
+<ul id="feature-list">
+  {% for feature in features %} {{ feature }}
+  <button class="delete-feature" data-feature="{{ feature }}">Supprimer</button>
+  <br />
+  {% endfor %}
+</ul>
+
+<table style="width: 15%; margin-left: auto; margin-right: auto">
+  <tr>
+    <td scope="col">
+      <a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a>
+    </td>
+  </tr>
+</table>
+
+<script>
+  // Gestion dynamique pour supprimer une fonctionnalité (via event delegation)
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .getElementById("feature-list")
+      .addEventListener("click", function (event) {
+        if (event.target.classList.contains("delete-feature")) {
+          const feature = event.target.getAttribute("data-feature");
+          fetch(`/delete_feature`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ feature: feature }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                event.target.parentElement.remove(); // Supprime l'élément de la liste
+                location.reload(); // Actualise la page (pb sinon)
+              } else {
+                alert("Erreur : impossible de supprimer la fonctionnalité.");
+              }
+            })
+            .catch(() => alert("Erreur de communication avec le serveur."));
+        }
+      });
+  });
+</script>
+
+{% endblock %}
