@@ -12,8 +12,13 @@ def valider_vote(liste_vote, type_vote):
     - Pour un vote unanime ('unanime'), tous les éléments de la liste doivent être identiques.
     - Pour un vote à la majorité absolue ('majorite'), un élément doit apparaître dans au moins la moitié des votes.
     """
-    if not liste_vote:  # Vérifie si la liste est vide
+    liste_type_vote = ['unanime', 'majorite']
+
+    if (not liste_vote):  # Vérifie si la liste est vide
         return (False, False)
+
+    if type_vote not in liste_type_vote:  # Vérifie si le type de vote est valide
+        raise AttributeError(f"Type de vote non supporté : '{type_vote}'. Types valides : {liste_type_vote}")
 
     if type_vote == 'unanime':
         # Vérifie si tous les votes sont identiques en comparant les valeurs uniques
