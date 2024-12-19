@@ -6,25 +6,20 @@ on:
       - main
 
 jobs:
-  build:
+  generate-docs:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install Doxygen
-      run: sudo apt-get install doxygen -y
+      - name: Install Doxygen
+        run: sudo apt-get install -y doxygen
 
-    - name : Install Dot
-      run : sudo apt-get install graphviz -y
+      - name: Generate Documentation
+        run: doxygen Doxyfile
 
-    - name: Generate Documentation
-      run: doxygen conf/Doxyfile
-
-    - name: Deploy Documentation
-    
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./documentation
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
