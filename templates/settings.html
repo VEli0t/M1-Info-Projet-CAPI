@@ -1,57 +1,46 @@
+<!--
+    @file settings.html
+    @brief Page de configuration des joueurs et des règles.
+    @details Permet de configurer les paramètres du jeu.
+-->
 {% extends "base.html" %} {% block title %}Paramètres{% endblock %} {% block
 content %}
 <h2>Réglage des paramètres</h2>
 
-<form action="/start_game" method="POST">
-  <!-- Configuration des joueurs -->
-  <fieldset>
-    <legend>Configuration des joueurs</legend>
-    <label for="num_players">Nombre de joueurs :</label>
-    <input
-      type="number"
-      id="num_players"
-      name="num_players"
-      min="1"
-      max="10"
-      value="3"
-      required
-    />
-    <div id="player_pseudos">
-      <label
-        >Pseudo Joueur 1 : <input type="text" name="player_1" required /></label
-      ><br />
-      <label
-        >Pseudo Joueur 2 : <input type="text" name="player_2" required /></label
-      ><br />
-      <label
-        >Pseudo Joueur 3 : <input type="text" name="player_3" required /></label
-      ><br />
-    </div>
-  </fieldset>
+<form action="{{ url_for('settings') }}" method="POST">
 
-  <!-- Choix des règles -->
-  <fieldset>
-    <legend>Choix des règles</legend>
-    <label for="rules">Type de règles :</label>
-    <select id="rules" name="rules">
-      <option value="strict">100% d'accord</option>
-      <option value="average">Moyenne</option>
-      <option value="median">Médiane</option>
-    </select>
-  </fieldset>
+    <!-- Configuration des joueurs -->
+    <fieldset>
+        <legend>Configuration des joueurs</legend>
+        <label for="num_players">Nombre de joueurs :</label>
+        <input type="number" id="num_players" name="num_players" min="1" max="10" value="3" required>
+        <div id="player_pseudos">
+            <label>Pseudo Joueur 1 : <input type="text" name="player_1" required></label><br>
+            <label>Pseudo Joueur 2 : <input type="text" name="player_2" required></label><br>
+            <label>Pseudo Joueur 3 : <input type="text" name="player_3" required></label><br>
+        </div>
+    </fieldset>
 
-  <br />
-  <!-- Navigation -->
-  <table style="width: 15%; margin-left: auto; margin-right: auto">
-    <tr>
-      <td scope="col">
-        <a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a>
-      </td>
-      <td scope="col">
-        <a href="{{ url_for('propose_features') }}">Suivant</a>
-      </td>
-    </tr>
-  </table>
+    <!-- Choix des règles -->
+    <fieldset>
+        <legend>Choix des règles</legend>
+        <label for="rules">Type de règles :</label>
+        <select id="rules" name="rules">
+            <option value="unanime">Unanimité</option>
+            <option value="majorite">Majorité</option>
+            <option value="median">Médiane</option>
+        </select>
+    </fieldset>
+    
+    <br>
+    <!-- Navigation -->
+    <table style="width:15%; margin-left:auto; margin-right:auto;">
+        <tr >
+            <td scope="col"><a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a> </td>
+            <button type="submit" formaction="{{ url_for('settings') }}">Suivant</button>
+        </tr>
+    </table>
+    
 </form>
 
 <script>

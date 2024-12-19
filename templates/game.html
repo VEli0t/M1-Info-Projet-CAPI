@@ -1,0 +1,25 @@
+<!--
+    @file game.html
+    @brief Page principale du jeu.
+    @details Gère le processus de vote pour chaque fonctionnalité proposée.
+-->
+{% extends "base.html" %}
+{% block title %}Game{% endblock %}
+{% block content %}
+<h2>Chiffrages des fonctionnalités</h2>
+
+<h1>{{ player }} - Vote pour la fonctionnalité: {{ feature }}</h1>
+<form method="POST">
+    <button type="submit" name="valeur_choisi" value="1">1</button>
+    <button type="submit" name="valeur_choisi" value="2">2</button>
+    <button type="submit" name="valeur_choisi" value="3">3</button>
+    <button type="submit" name="valeur_choisi" value="5">5</button>
+    <button type="submit" name="valeur_choisi" value="8">8</button>
+    <button type="submit" name="valeur_choisi" value="13">13</button>
+    <button type="submit" name="valeur_choisi" value="20">20</button>
+    <button type="submit" name="valeur_choisi" value="40">40</button>
+    <button type="submit" name="valeur_choisi" value="100">100</button>
+    <button type="submit" name="valeur_choisi" value="cafe">Cafe</button>
+    <button type="submit" name="valeur_choisi" value="interro">Interro</button>
+</form>
+{% endblock %}

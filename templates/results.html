@@ -1,0 +1,20 @@
+<!--
+    @file results.html
+    @brief Page des résultats.
+    @details Affiche les résultats finaux des votes.
+-->
+{% extends "base.html" %}
+{% block title %}Résultats{% endblock %}
+{% block content %}
+
+<h2>Résultats finaux des fonctionnalités</h2>
+
+<ul>
+    {% for feature, result in results.items() %}
+        <li>{{ feature }} : {{ result }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('home') }}">Retour à l'accueil</a>
+
+{% endblock %}
