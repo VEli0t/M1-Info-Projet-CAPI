@@ -26,29 +26,30 @@ def settings():
         return redirect(url_for('propose_features'))
     return render_template('settings.html')
 
-# Liste temporaire pour stocker les fonctionnalités proposées
-features = []
-
 @app.route('/propose_features', methods=['GET', 'POST'])
 def propose_features():
-    global features
+    if 'features' not in session:
+        session['features'] = []  # Initialiser si absent
+
     if request.method == 'POST':
-        # Ajout d'une nouvelle fonctionnalité
         new_feature = request.form.get('feature')
         if new_feature:
-            features.append(new_feature)  # Ajout à la liste
+            features = session['features']
+            features.append(new_feature)
+            session['features'] = features
         return redirect(url_for('propose_features'))
-    return render_template('propose_features.html', features=features)
+
+    return render_template('propose_features.html', features=session['features'])
 
 @app.route('/delete_feature', methods=['POST'])
 def delete_feature():
-    global features
     data = request.get_json()
     feature_to_delete = data.get('feature')
-    if feature_to_delete in features:
-        features.remove(feature_to_delete)
+    if feature_to_delete in session['features']:
+        session['features'].remove(feature_to_delete)
         return jsonify({"success": True})  # Réponse JSON pour confirmer la suppression
     return jsonify({"success": False})  # Erreur si la fonctionnalité n'existe pas
+
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
