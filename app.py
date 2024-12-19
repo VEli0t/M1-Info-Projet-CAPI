@@ -68,8 +68,11 @@ def delete_feature():
     """
     data = request.get_json()
     feature_to_delete = data.get('feature')
-    if feature_to_delete in session['features']:
-        session['features'].remove(feature_to_delete)
+    if 'features' in session and feature_to_delete in session['features']:
+        # Supprime la fonctionnalité et met à jour la session
+        features = session['features']
+        features.remove(feature_to_delete)
+        session['features'] = features  # Réaffecter pour mettre à jour la session
         return jsonify({"success": True})
     return jsonify({"success": False})
 
