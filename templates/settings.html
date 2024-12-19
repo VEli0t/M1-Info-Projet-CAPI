@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Réglage des paramètres</h2>
 
-<form action="/start_game" method="POST">
+<form action="{{ url_for('settings') }}" method="POST">
 
     <!-- Configuration des joueurs -->
     <fieldset>
@@ -22,8 +22,8 @@
         <legend>Choix des règles</legend>
         <label for="rules">Type de règles :</label>
         <select id="rules" name="rules">
-            <option value="strict">100% d'accord</option>
-            <option value="average">Moyenne</option>
+            <option value="unanime">Unanimité</option>
+            <option value="majorite">Majorité</option>
             <option value="median">Médiane</option>
         </select>
     </fieldset>
@@ -33,6 +33,7 @@
     <table style="width:15%; margin-left:auto; margin-right:auto;">
         <tr >
             <td scope="col"><a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a> </td>
+            <button type="submit" formaction="{{ url_for('settings') }}">Suivant</button>
         </tr>
     </table>
     
