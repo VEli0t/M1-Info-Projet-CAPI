@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Débat entre joueurs</h2>
+<p>La fonctionnalité <strong>{{ feature }}</strong> a provoqué un désaccord.</p>
+
+<p>Joueurs concernés :</p>
+<ul>
+    <li>{{ debate_players[0] }} (a chiffré : {{ vote[0] }})</li>
+    <li>{{ debate_players[1] }} (a chiffré : {{ vote[1] }})</li>
+</ul>
+
+<form action="{{ url_for('game') }}" method="GET">
+    <button type="submit">Relancer le vote</button>
+</form>
+{% endblock %}

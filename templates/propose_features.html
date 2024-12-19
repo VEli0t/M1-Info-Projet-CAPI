@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block title %}Proposition de fonctionnalités{%
-endblock %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Proposition de fonctionnalités{% endblock %}
+{% block content %}
 
 <h2>Proposer des fonctionnalités à voter</h2>
 
@@ -13,19 +14,17 @@ endblock %} {% block content %}
 <!-- Liste des fonctionnalités proposées -->
 <h3>Fonctionnalités déjà proposées</h3>
 <ul id="feature-list">
-  {% for feature in features %} {{ feature }}
-  <button class="delete-feature" data-feature="{{ feature }}">Supprimer</button>
-  <br />
+  {% for feature in features %}
+    <li>
+      {{ feature }}
+      <button class="delete-feature" data-feature="{{ feature }}">Supprimer</button>
+    </li>
   {% endfor %}
 </ul>
 
-<table style="width: 15%; margin-left: auto; margin-right: auto">
-  <tr>
-    <td scope="col">
-      <a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a>
-    </td>
-  </tr>
-</table>
+<!-- Navigation -->
+<a href="{{ url_for('game') }}">Suivant</a>
+<a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a>
 
 <script>
   // Gestion dynamique pour supprimer une fonctionnalité (via event delegation)
@@ -43,8 +42,7 @@ endblock %} {% block content %}
             .then((response) => response.json())
             .then((data) => {
               if (data.success) {
-                event.target.parentElement.remove(); // Supprime l'élément de la liste
-                location.reload(); // Actualise la page (pb sinon)
+                event.target.parentElement.remove();  // Supprimer l'élément
               } else {
                 alert("Erreur : impossible de supprimer la fonctionnalité.");
               }
