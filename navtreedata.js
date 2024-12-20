@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "test EVT", "index.html", [
+  [ "Projet CAPI", "index.html", [
     [ "M1-Info-Projet-CAPI", "md_README.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
