@@ -1,18 +1,30 @@
 var indexSectionsWithContent =
 {
-  0: "cimp",
-  1: "cimp"
+  0: "abcdghimprsv",
+  1: "am",
+  2: "abdghprs",
+  3: "dghprsv",
+  4: "ads",
+  5: "cimp"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "pages"
+  1: "namespaces",
+  2: "files",
+  3: "functions",
+  4: "variables",
+  5: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Pages"
+  1: "Namespaces",
+  2: "Files",
+  3: "Functions",
+  4: "Variables",
+  5: "Pages"
 };
 
