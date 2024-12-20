@@ -282,3 +282,26 @@ def test_valider_vote_invalid_type():
     from models.game import valider_vote
     with pytest.raises(AttributeError):
         valider_vote(['1', '2', '3'], 'invalid_type')
+
+def test_export_results(client):
+    """
+    Test de la route /export_results.
+    Vérifie que les résultats sont exportés correctement en JSON.
+    """
+    # Ajouter des résultats simulés dans la session
+    with client.session_transaction() as session:
+        session['results'] = {
+            "Feature A": 3,
+            "Feature B": 5
+        }
+
+    # Appeler la route /export_results
+    response = client.get('/export_results')
+
+    # Vérifier le statut et le type de réponse
+    assert response.status_code == 200
+    assert response.mimetype == 'application/json'
+
+    # Vérifier le contenu du fichier JSON
+    json_data = json.loads(response.data)
+    assert json_data == {"backlog": {"Feature A": 3, "Feature B": 5}}

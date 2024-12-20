@@ -2,6 +2,7 @@ import os
 import json
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, make_response, send_file
 from models.game import valider_vote
+from io import BytesIO
 
 app = Flask(__name__)
 app.secret_key = 'azerty'  # Nécessaire pour utiliser les sessions
@@ -276,6 +277,32 @@ def results():
     """
     results = session.get('results', {})
     return render_template('results.html', results=results)
+
+@app.route('/export_results', methods=['GET'])
+def export_results():
+    """
+    @brief Exporte les résultats finaux (backlog avec estimations) au format JSON.
+    
+    @return Fichier JSON téléchargeable contenant les fonctionnalités et leurs estimations.
+    """
+    # Vérifier que les résultats existent dans la session
+    results = session.get('results', {})
+    if not results:
+        return jsonify({"error": "Aucun résultat à exporter."}), 400
+
+    # Créer le contenu du fichier JSON
+    backlog_data = {"backlog": results}
+    json_content = json.dumps(backlog_data, indent=4)
+
+    # Créer un fichier JSON téléchargeable en mémoire
+    buffer = BytesIO()
+    buffer.write(json_content.encode('utf-8'))
+    buffer.seek(0)
+
+    return send_file(buffer, 
+                     as_attachment=True, 
+                     download_name='backlog_results.json', 
+                     mimetype='application/json')
 
 if __name__ == '__main__':
     """
