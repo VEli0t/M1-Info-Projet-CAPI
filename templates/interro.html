@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %}Interrogation{% endblock %} {% block
+    content %}
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Phase de discussion</h1>
+        <p class="text-center">Les joueurs ont voté <strong class="text-warning">❓ interro</strong> pour la fonctionnalité suivante :</p>
+        <h3 class="text-center text-primary">{{ feature }}</h3>
+        <p class="text-center">Prenez le temps de discuter avant de revenir au vote.</p>
+        <form method="POST" action="{{ url_for('game') }}" class="text-center mt-4">
+            <button type="submit" class="btn btn-success">Revenir au vote</button>
+        </form>
+    </div>
+
+{% endblock %}
