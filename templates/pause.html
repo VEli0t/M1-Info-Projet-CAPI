@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block title %}Pause{% endblock %} {% block
+    content %}
+    <h1>Le jeu est en pause (Mode "Café")</h1>
+    <form method="POST" action="{{ url_for('pause') }}">
+        <button type="submit">Télécharger la sauvegarde</button>
+    </form>
+    <br>
+    <a href="{{ url_for('game') }}">Retour au jeu</a>
+{% endblock %}

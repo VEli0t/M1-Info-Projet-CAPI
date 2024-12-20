@@ -5,56 +5,63 @@
 -->
 {% extends "base.html" %} {% block title %}Paramètres{% endblock %} {% block
 content %}
-<h2>Réglage des paramètres</h2>
-
-<form action="{{ url_for('settings') }}" method="POST">
-
-    <!-- Configuration des joueurs -->
-    <fieldset>
-        <legend>Configuration des joueurs</legend>
-        <label for="num_players">Nombre de joueurs :</label>
-        <input type="number" id="num_players" name="num_players" min="1" max="10" value="3" required>
-        <div id="player_pseudos">
-            <label>Pseudo Joueur 1 : <input type="text" name="player_1" required></label><br>
-            <label>Pseudo Joueur 2 : <input type="text" name="player_2" required></label><br>
-            <label>Pseudo Joueur 3 : <input type="text" name="player_3" required></label><br>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Paramètres du jeu</h1>
+    <form method="POST" action="{{ url_for('settings') }}">
+        <div class="mb-3">
+            <label for="num_players" class="form-label">Nombre de joueurs</label>
+            <input type="number" class="form-control" id="num_players" name="num_players" min="1" max="10" required>
         </div>
-    </fieldset>
-
-    <!-- Choix des règles -->
-    <fieldset>
-        <legend>Choix des règles</legend>
-        <label for="rules">Type de règles :</label>
-        <select id="rules" name="rules">
-            <option value="unanime">Unanimité</option>
-            <option value="majorite">Majorité</option>
-            <option value="median">Médiane</option>
-        </select>
-    </fieldset>
-    
-    <br>
-    <!-- Navigation -->
-    <table style="width:15%; margin-left:auto; margin-right:auto;">
-        <tr >
-            <td scope="col"><a href="{{ url_for('home') }}" class="button">Retour à l'accueil</a> </td>
-            <button type="submit" formaction="{{ url_for('settings') }}">Suivant</button>
-        </tr>
-    </table>
-    
-</form>
+        <div id="player-fields" class="mb-3">
+            <!-- Champs pour les noms des joueurs ajoutés dynamiquement -->
+        </div>
+        <div class="mb-3">
+            <label for="rules" class="form-label">Règles</label>
+            <select class="form-select" id="rules" name="rules">
+                <option value="majorite">Majorité</option>
+                <option value="unanime">Unanimité</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="time_limit" class="form-label">Temps limite par vote (secondes)</label>
+            <input type="number" class="form-control" id="time_limit" name="time_limit" min="10" max="300" step="10">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="no_time_limit" name="no_time_limit" value="true">
+            <label class="form-check-label" for="no_time_limit">Pas de limite de temps</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Enregistrer les paramètres</button>
+    </form>
+</div>
 
 <script>
-  // Dynamically add fields for player pseudos based on the number of players
-  document.getElementById("num_players").addEventListener("input", function () {
-    const numPlayers = this.value;
-    const playerPseudosDiv = document.getElementById("player_pseudos");
-    playerPseudosDiv.innerHTML = "";
-    for (let i = 1; i <= numPlayers; i++) {
-      playerPseudosDiv.innerHTML += `
-                <label>Pseudo Joueur ${i} : <input type="text" name="player_${i}" required></label><br>
-            `;
-    }
-  });
+    const numPlayersField = document.getElementById('num_players');
+    const playerFieldsContainer = document.getElementById('player-fields');
+
+    numPlayersField.addEventListener('input', () => {
+        const numPlayers = parseInt(numPlayersField.value) || 0;
+        playerFieldsContainer.innerHTML = '';
+        for (let i = 1; i <= numPlayers; i++) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = `player_${i}`;
+            input.classList.add('form-control', 'mb-2');
+            input.placeholder = `Nom du joueur ${i}`;
+            playerFieldsContainer.appendChild(input);
+        }
+    });
+
+    // Cacher le champ de limite de temps si "Pas de limite de temps" est coché
+    const noTimeLimitCheckbox = document.getElementById('no_time_limit');
+    const timeLimitField = document.getElementById('time_limit');
+
+    noTimeLimitCheckbox.addEventListener('change', () => {
+        if (noTimeLimitCheckbox.checked) {
+            timeLimitField.disabled = true;
+        } else {
+            timeLimitField.disabled = false;
+        }
+    });
 </script>
 
 {% endblock %}

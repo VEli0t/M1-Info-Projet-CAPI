@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block title %}Charger une partie{% endblock %} {% block
+    content %}
+
+    <h1>Charger une partie</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="savefile">Choisir un fichier de sauvegarde (JSON) :</label>
+        <input type="file" name="savefile" accept=".json">
+        <button type="submit">Charger</button>
+    </form>
+    <a href="{{ url_for('home') }}">Retour à l'accueil</a>
+
+{% endblock %}

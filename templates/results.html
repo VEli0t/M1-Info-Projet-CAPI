@@ -7,14 +7,25 @@
 {% block title %}Résultats{% endblock %}
 {% block content %}
 
-<h2>Résultats finaux des fonctionnalités</h2>
-
-<ul>
-    {% for feature, result in results.items() %}
-        <li>{{ feature }} : {{ result }}</li>
-    {% endfor %}
-</ul>
-
-<a href="{{ url_for('home') }}">Retour à l'accueil</a>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Résultats finaux</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Fonctionnalité</th>
+                <th>Vote</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feature, vote in results.items() %}
+            <tr>
+                <td>{{ feature }}</td>
+                <td>{{ vote }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('home') }}" class="btn btn-primary">Retour à l'accueil</a>
+</div>
 
 {% endblock %}
