@@ -3,22 +3,28 @@ name: Generate Doxygen Documentation
 on:
   push:
     branches:
-      - develop
-      - main
-  pull_request:
-    branches:
-      - develop
-      - main
+      - test-evt-documentation
 
 jobs:
-  generate-docs:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Install Doxygen
-        run: sudo apt-get install -y doxygen
+    - name: Install Doxygen
+      run: sudo apt-get install doxygen -y
 
-      - name: Generate Documentation
-        run: cd docs && doxygen Doxyfile
+    - name : Install Dot
+      run : sudo apt-get install graphviz -y
+
+    - name: Generate Documentation
+      run: doxygen conf/Doxyfile
+
+    - name: Deploy Documentation
+    
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./documentation
