@@ -25,7 +25,13 @@
 var NAVTREE =
 [
   [ "Projet CAPI", "index.html", [
-    [ "M1-Info-Projet-CAPI", "md_README.html", null ],
+    [ "M1-Info-Projet-CAPI", "md_README.html", [
+      [ "Fonctionnalités", "md_README.html#autotoc_md1", null ],
+      [ "Installation", "md_README.html#autotoc_md2", null ],
+      [ "Utilisation", "md_README.html#autotoc_md3", null ],
+      [ "Tests", "md_README.html#autotoc_md4", null ],
+      [ "Auteurs", "md_README.html#autotoc_md5", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

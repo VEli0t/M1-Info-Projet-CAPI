@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['game_0',['game',['../namespaceapp.html#a4fa49c6e96bed196b750e9f46dd17b27',1,'app']]]
+  ['export_5fresults_0',['export_results',['../namespaceapp.html#ad1ee0ec446b45724fd9463bf8455b9b6',1,'app']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
-  ['results_1',['results',['../namespaceapp.html#a08ab40e109a3efe62f83e7367b4f863b',1,'app']]],
-  ['results_2ehtml_2',['results.html',['../results_8html.html',1,'']]]
+  ['load_5fgame_0',['load_game',['../namespaceapp.html#ae2a92516a62c4fe77c76dbb34cf4992e',1,'app']]],
+  ['load_5fgame_2ehtml_1',['load_game.html',['../load__game_8html.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['settings_0',['settings',['../namespaceapp.html#a42e772c767ffdac148fabeffbf3dc3bb',1,'app']]]
+  ['load_5fgame_0',['load_game',['../namespaceapp.html#ae2a92516a62c4fe77c76dbb34cf4992e',1,'app']]]
 ];

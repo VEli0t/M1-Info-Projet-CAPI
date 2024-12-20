@@ -110,8 +110,16 @@ Functions</h2></td></tr>
 <tr class="separator:a4fa49c6e96bed196b750e9f46dd17b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fedf2065d5812469780753ebaa30149" id="r_a2fedf2065d5812469780753ebaa30149"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceapp.html#a2fedf2065d5812469780753ebaa30149">debate</a> ()</td></tr>
 <tr class="separator:a2fedf2065d5812469780753ebaa30149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae9b690c974fd015af065dfd275de952" id="r_aae9b690c974fd015af065dfd275de952"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceapp.html#aae9b690c974fd015af065dfd275de952">interro</a> ()</td></tr>
+<tr class="separator:aae9b690c974fd015af065dfd275de952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a077fa929da7933fe6221dc5b6f9dbe51" id="r_a077fa929da7933fe6221dc5b6f9dbe51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceapp.html#a077fa929da7933fe6221dc5b6f9dbe51">pause</a> ()</td></tr>
+<tr class="separator:a077fa929da7933fe6221dc5b6f9dbe51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a92516a62c4fe77c76dbb34cf4992e" id="r_ae2a92516a62c4fe77c76dbb34cf4992e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceapp.html#ae2a92516a62c4fe77c76dbb34cf4992e">load_game</a> ()</td></tr>
+<tr class="separator:ae2a92516a62c4fe77c76dbb34cf4992e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08ab40e109a3efe62f83e7367b4f863b" id="r_a08ab40e109a3efe62f83e7367b4f863b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceapp.html#a08ab40e109a3efe62f83e7367b4f863b">results</a> ()</td></tr>
 <tr class="separator:a08ab40e109a3efe62f83e7367b4f863b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ee0ec446b45724fd9463bf8455b9b6" id="r_ad1ee0ec446b45724fd9463bf8455b9b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceapp.html#ad1ee0ec446b45724fd9463bf8455b9b6">export_results</a> ()</td></tr>
+<tr class="separator:ad1ee0ec446b45724fd9463bf8455b9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -161,6 +169,26 @@ Variables</h2></td></tr>
 </pre> 
 </div>
 </div>
+<a id="ad1ee0ec446b45724fd9463bf8455b9b6" name="ad1ee0ec446b45724fd9463bf8455b9b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1ee0ec446b45724fd9463bf8455b9b6">&#9670;&#160;</a></span>export_results()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">app.export_results </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Exporte les résultats finaux (backlog avec estimations) au format JSON.
+
+@return Fichier JSON téléchargeable contenant les fonctionnalités et leurs estimations.
+</pre> 
+</div>
+</div>
 <a id="a4fa49c6e96bed196b750e9f46dd17b27" name="a4fa49c6e96bed196b750e9f46dd17b27"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4fa49c6e96bed196b750e9f46dd17b27">&#9670;&#160;</a></span>game()</h2>
 
@@ -175,9 +203,18 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">@brief Gère le processus de vote pour chaque fonctionnalité.
-- GET : Affiche la fonctionnalité et le joueur actuel.
-- POST : Enregistre un vote et traite les désaccords.
+<pre class="fragment">@brief Gère le processus de vote pour chaque fonctionnalité, joueur par joueur.
+- GET : Affiche la fonctionnalité et le joueur actuel, avec un temps limite.
+- POST : Enregistre un vote ou passe au joueur suivant si pas de vote.
+
+@details
+Le temps est géré côté front. Si le joueur n'a pas voté avant la fin du temps,
+il vote 'interro'. Lorsque tous les joueurs ont été itérés, on évalue le résultat.
+Si tous ont voté "cafe", on passe en mode pause.
+Si le vote est unanime ou majoritaire, on enregistre le résultat.
+Si le vote enregistrer est 'interro', alors une phase de discussion est mise ne place,
+avant de revoter la fonctionnalité.
+Si personne n'a voté, on relance la même fonctionnalité.
 
 @return Redirection ou affichage de la page de jeu.
 </pre> 
@@ -199,6 +236,79 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">@brief Affiche la page d'accueil.
 @return Le template HTML de la page d'accueil.
+</pre> 
+</div>
+</div>
+<a id="aae9b690c974fd015af065dfd275de952" name="aae9b690c974fd015af065dfd275de952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae9b690c974fd015af065dfd275de952">&#9670;&#160;</a></span>interro()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">app.interro </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Affiche une page spéciale lorsque tous les joueurs votent "interro".
+
+@details
+- Cette page demande aux joueurs d'expliquer ou justifier leur vote.
+- Elle propose un bouton pour revenir à la fonctionnalité en cours ou relancer le vote.
+
+@return Le template 'interro.html'.
+</pre> 
+</div>
+</div>
+<a id="ae2a92516a62c4fe77c76dbb34cf4992e" name="ae2a92516a62c4fe77c76dbb34cf4992e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2a92516a62c4fe77c76dbb34cf4992e">&#9670;&#160;</a></span>load_game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">app.load_game </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Charge l'état d'une partie depuis un fichier JSON uploadé par l'utilisateur.
+
+@details
+- L'utilisateur upload un fichier JSON via un formulaire.
+- L'état du jeu est restauré dans la session.
+
+@return Redirection vers la page de jeu après chargement.
+</pre> 
+</div>
+</div>
+<a id="a077fa929da7933fe6221dc5b6f9dbe51" name="a077fa929da7933fe6221dc5b6f9dbe51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a077fa929da7933fe6221dc5b6f9dbe51">&#9670;&#160;</a></span>pause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">app.pause </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Affiche l'écran de pause lorsque tous les joueurs ont voté 'cafe'.
+
+@details
+Sur cette page, deux options :
+- Télécharger la partie sauvegardée.
+- Retourner directement au jeu.
+
+@return Le template 'pause.html'.
 </pre> 
 </div>
 </div>

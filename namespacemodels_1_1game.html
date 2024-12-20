@@ -99,8 +99,95 @@ $(document).ready(function(){initNavTree('namespacemodels_1_1game.html',''); ini
 Functions</h2></td></tr>
 <tr class="memitem:aee59704a8ae2798e3f6d2a9a7d726e98" id="r_aee59704a8ae2798e3f6d2a9a7d726e98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemodels_1_1game.html#aee59704a8ae2798e3f6d2a9a7d726e98">valider_vote</a> (liste_vote, type_vote)</td></tr>
 <tr class="separator:aee59704a8ae2798e3f6d2a9a7d726e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f1740c8fa1b2dddc5e2ab4bf9bff71" id="r_a10f1740c8fa1b2dddc5e2ab4bf9bff71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemodels_1_1game.html#a10f1740c8fa1b2dddc5e2ab4bf9bff71">gerer_votes_speciaux</a> (liste_vote, type_vote)</td></tr>
+<tr class="separator:a10f1740c8fa1b2dddc5e2ab4bf9bff71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfdc38c886108928d7769fae0db075bb" id="r_adfdc38c886108928d7769fae0db075bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemodels_1_1game.html#adfdc38c886108928d7769fae0db075bb">valider_unanimite</a> (votes)</td></tr>
+<tr class="separator:adfdc38c886108928d7769fae0db075bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ab17b7a55d39b6090cf94db3e9ee15" id="r_a00ab17b7a55d39b6090cf94db3e9ee15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemodels_1_1game.html#a00ab17b7a55d39b6090cf94db3e9ee15">valider_majorite</a> (votes)</td></tr>
+<tr class="separator:a00ab17b7a55d39b6090cf94db3e9ee15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a10f1740c8fa1b2dddc5e2ab4bf9bff71" name="a10f1740c8fa1b2dddc5e2ab4bf9bff71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10f1740c8fa1b2dddc5e2ab4bf9bff71">&#9670;&#160;</a></span>gerer_votes_speciaux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">models.game.gerer_votes_speciaux </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>liste_vote</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>type_vote</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Gère les votes spéciaux ("cafe" et "interro") selon le type de vote.
+
+@param liste_vote La liste des votes exprimés.
+@param type_vote Le type de validation à effectuer : 'unanime' ou 'majorite'.
+@return Un tuple si un cas spécial est détecté, sinon None.
+</pre> 
+</div>
+</div>
+<a id="a00ab17b7a55d39b6090cf94db3e9ee15" name="a00ab17b7a55d39b6090cf94db3e9ee15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ab17b7a55d39b6090cf94db3e9ee15">&#9670;&#160;</a></span>valider_majorite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">models.game.valider_majorite </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>votes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Valide un vote à la majorité absolue.
+
+@param votes La liste des votes après filtrage des votes spéciaux.
+@return Un tuple contenant :
+    - Un booléen indiquant si la validation est réussie.
+    - La valeur majoritaire, sinon False.
+</pre> 
+</div>
+</div>
+<a id="adfdc38c886108928d7769fae0db075bb" name="adfdc38c886108928d7769fae0db075bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfdc38c886108928d7769fae0db075bb">&#9670;&#160;</a></span>valider_unanimite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">models.game.valider_unanimite </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>votes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Valide un vote unanime.
+
+@param votes La liste des votes après filtrage des votes spéciaux.
+@return Un tuple contenant :
+    - Un booléen indiquant si la validation est réussie.
+    - La valeur unanime, sinon False.
+</pre> 
+</div>
+</div>
 <a id="aee59704a8ae2798e3f6d2a9a7d726e98" name="aee59704a8ae2798e3f6d2a9a7d726e98"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aee59704a8ae2798e3f6d2a9a7d726e98">&#9670;&#160;</a></span>valider_vote()</h2>
 
@@ -135,8 +222,9 @@ Functions</h2></td></tr>
     - La valeur majoritaire ou unanime, si applicable, sinon False.
 
 @details
-- Pour un vote unanime ('unanime'), tous les éléments de la liste doivent être identiques.
-- Pour un vote à la majorité absolue ('majorite'), un élément doit apparaître dans au moins la moitié des votes.
+- Les votes "cafe" et "interro" sont traités comme des cas spécifiques.
+- Pour un vote 'unanime', tous les éléments doivent être identiques.
+- Pour un vote 'majorite', un élément doit apparaître dans au moins la moitié des votes.
 </pre> 
 </div>
 </div>

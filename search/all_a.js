@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['secret_5fkey_0',['secret_key',['../namespaceapp.html#adca7658ff5c9024a5353574d2c01cbd2',1,'app']]],
-  ['settings_1',['settings',['../namespaceapp.html#a42e772c767ffdac148fabeffbf3dc3bb',1,'app']]],
-  ['settings_2ehtml_2',['settings.html',['../settings_8html.html',1,'']]]
+  ['m1_20info_20projet_20capi_0',['M1-Info-Projet-CAPI',['../md_README.html',1,'']]],
+  ['models_1',['models',['../namespacemodels.html',1,'']]],
+  ['models_3a_3agame_2',['game',['../namespacemodels_1_1game.html',1,'models']]]
 ];

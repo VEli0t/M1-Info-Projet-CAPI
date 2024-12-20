@@ -92,7 +92,84 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
   <div class="headertitle"><div class="title">M1-Info-Projet-CAPI</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a>Projet M1 Informatique - Conception agile de projets informatiques </p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> Ce projet est développé dans le cadre du cours de <b>Conception Agile de Projets Informatiques</b> du Master 1 Informatique. Il s'agit d'une application de <b>Planning Poker</b>, une méthode utilisée pour estimer l'effort ou la complexité des tâches dans le développement logiciel.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Fonctionnalités</h1>
+<ul>
+<li><b>Définition des paramètres de la partie</b> :<ul>
+<li>Définir le nombre de joueurs.</li>
+<li>Saisir un pseudo pour chaque joueur.</li>
+<li>Choisir parmi plusieurs règles de Planning Poker (strictes, moyenne, médiane).</li>
+</ul>
+</li>
+<li><b>Proposition de fonctionnalités</b> :<ul>
+<li>Proposer des fonctionnalités à estimer.</li>
+<li>Visualiser les fonctionnalités déjà proposées.</li>
+<li>Supprimer des fonctionnalités si nécessaire.</li>
+</ul>
+</li>
+<li><b>Système de vote</b> :<ul>
+<li>Voter pour une fonctionnalité à l'aide d'un système de cartes.</li>
+<li>Validation automatique des estimations selon les règles choisies.</li>
+<li>Possibilité de revoter si une estimation n'est pas validée.</li>
+</ul>
+</li>
+<li><b>Interface utilisateur</b> :<ul>
+<li>Utilisation en mode local (tour par tour sur un seul dispositif).</li>
+<li>Navigation via un menu ergonomique regroupant toutes les options.</li>
+</ul>
+</li>
+<li><b>Fonctionnalités supplémentaires</b> :<ul>
+<li>Chronomètre pour limiter le temps de vote.</li>
+<li>Espace de chat intégré pour discuter avec les autres joueurs.</li>
+</ul>
+</li>
+<li><b>Gestion du backlog</b> :<ul>
+<li>Chargement d'une liste de fonctionnalités au format JSON.</li>
+<li>Exportation du backlog complété avec les estimations en fichier JSON.</li>
+<li>Sauvegarde de l'état d'avancement si tous les joueurs choisissent la carte café.</li>
+<li>Reprise d'une partie après une pause café.</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Installation</h1>
+<ol type="1">
+<li><p class="startli"><b>Cloner le dépôt</b> :</p>
+<div class="fragment"><div class="line">git clone https://github.com/VEli0t/M1-Info-Projet-CAPI.git</div>
+<div class="line">cd M1-Info-Projet-CAPI</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b>Créer et activer un environnement virtuel</b> :</p>
+<div class="fragment"><div class="line">python -m venv env</div>
+<div class="line"># Sous Windows</div>
+<div class="line">env\Scripts\activate.bat</div>
+<div class="line"># Sous Unix ou MacOS</div>
+<div class="line">source env/bin/activate</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b>Installer les dépendances</b> :</p>
+<div class="fragment"><div class="line">pip install -r requirements.txt</div>
+</div><!-- fragment --></li>
+</ol>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Utilisation</h1>
+<ol type="1">
+<li><p class="startli"><b>Lancer l'application</b> :</p>
+<div class="fragment"><div class="line">python app.py</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b>Accéder à l'application</b> :</p>
+<p class="startli">Ouvrez votre navigateur et rendez-vous sur <code><a href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a></code>.</p>
+</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Tests</h1>
+<p>Des tests unitaires sont disponibles pour vérifier le bon fonctionnement de l'application. Pour les exécuter :</p>
+<div class="fragment"><div class="line">pytest</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+Auteurs</h1>
+<ul>
+<li><b>VEli0t</b> - <a href="https://github.com/VEli0t">Profil GitHub</a></li>
+<li><b>PaulP01</b> - <a href="https://github.com/PaulP01">Profil GitHub</a> </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['valider_5fvote_0',['valider_vote',['../namespacemodels_1_1game.html#aee59704a8ae2798e3f6d2a9a7d726e98',1,'models::game']]]
+  ['pause_0',['pause',['../namespaceapp.html#a077fa929da7933fe6221dc5b6f9dbe51',1,'app']]],
+  ['propose_5ffeatures_1',['propose_features',['../namespaceapp.html#a8b50f65e72d815a3bab6cdffbd2345f8',1,'app']]]
 ];
