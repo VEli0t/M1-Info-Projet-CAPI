@@ -19,7 +19,7 @@ RECURSIVE              = YES
 FILE_PATTERNS          = *.py *.html
 
 # Exclude specific directories
-EXCLUDE                = venv models/__init__.py
+EXCLUDE_PATTERNS       = */__init__.py
 
 # Generate a compound index
 GENERATE_HTML          = YES
@@ -38,3 +38,15 @@ CALL_GRAPH             = YES
 CALLER_GRAPH           = YES
 
 HTML_OUTPUT            = html
+
+WARN_IF_UNDOCUMENTED = YES
+
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+WARN_LOGFILE           = warnings.log
