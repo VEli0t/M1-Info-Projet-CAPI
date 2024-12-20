@@ -76,3 +76,67 @@ def test_valider_vote_edge_case_majorite():
     result, value = valider_vote(votes, 'majorite')
     assert result is True
     assert value == 3
+
+
+import pytest
+from models.game import valider_vote
+
+
+def test_tous_interro_unanime():
+    """
+    @brief Teste si la fonction détecte correctement que tous les joueurs ont voté "interro" en mode 'unanime'.
+    """
+    votes = ["interro", "interro", "interro"]
+    resultat, valeur = valider_vote(votes, "unanime")
+    assert resultat is True
+    assert valeur == "interro"
+
+
+def test_majorite_interro():
+    """
+    @brief Teste si la fonction détecte une majorité de votes "interro" en mode 'majorite'.
+    """
+    votes = ["interro", "interro", "1"]
+    resultat, valeur = valider_vote(votes, "majorite")
+    assert resultat is True
+    assert valeur == "interro"
+
+
+def test_pas_majorite_interro():
+    """
+    @brief Vérifie qu'il n'y a pas de majorité pour "interro".
+    """
+    votes = ["interro", "1", "2"]
+    resultat, valeur = valider_vote(votes, "majorite")
+    assert resultat is False
+    assert valeur is False
+
+
+def test_retire_interro_avant_unanime():
+    """
+    @brief Vérifie que les votes "interro" sont retirés avant de valider les autres votes en mode 'unanime'.
+    """
+    votes = ["1", "interro", "1"]
+    resultat, valeur = valider_vote(votes, "unanime")
+    assert resultat is True
+    assert valeur == "1"
+
+
+def test_retire_interro_avant_majorite():
+    """
+    @brief Vérifie que les votes "interro" sont retirés avant de valider les autres votes en mode 'majorite'.
+    """
+    votes = ["1", "interro", "1", "1"]
+    resultat, valeur = valider_vote(votes, "majorite")
+    assert resultat is True
+    assert valeur == "1"
+
+
+def test_mix_cafe_et_interro():
+    """
+    @brief Teste que la fonction gère correctement un mélange de votes "cafe" et "interro".
+    """
+    votes = ["cafe", "interro", "cafe", "interro"]
+    resultat, valeur = valider_vote(votes, "majorite")
+    assert resultat is False
+    assert valeur is False

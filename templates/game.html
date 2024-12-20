@@ -8,7 +8,9 @@
 {% block content %}
 <h2>Chiffrages des fonctionnalités</h2>
 
-<h1>{{ player }} - Vote pour la fonctionnalité: {{ feature }}</h1>
+<h1>Fonctionnalité : {{ feature }}</h1>
+<h2>Joueur : {{ player }}</h2>
+<div>Temps restant : <span id="timer"></span> secondes</div>
 <form method="POST">
     <button type="submit" name="valeur_choisi" value="1">1</button>
     <button type="submit" name="valeur_choisi" value="2">2</button>
@@ -22,4 +24,25 @@
     <button type="submit" name="valeur_choisi" value="cafe">Cafe</button>
     <button type="submit" name="valeur_choisi" value="interro">Interro</button>
 </form>
+<script>
+    let timeLeft = {{ time_limit | tojson }};
+    const timerDisplay = document.getElementById('timer');
+    const voteForm = document.querySelector('form'); // Formulaire global
+    const interroButton = document.querySelector('button[value="interro"]'); // Bouton "Interro"
+
+    function updateTimer() {
+        if (timeLeft > 0) {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft;
+        } else {
+            // Temps écoulé, vote automatique pour "interro"
+            clearInterval(timer);
+            interroButton.click(); // Simuler un clic sur le bouton "Interro"
+        }
+    }
+
+    // Initialiser le timer
+    timerDisplay.textContent = timeLeft;
+    const timer = setInterval(updateTimer, 1000);
+</script>
 {% endblock %}
